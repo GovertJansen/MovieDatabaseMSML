@@ -19,7 +19,11 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route naar de Movie Home page, welke de populaire films ophaalt en weergeeft
 Route::get('movies', [DashboardController::class, 'index']);
+
+// Route naar de zoekfunctionaliteit, welke de zoekresultaten van films ophaalt op basis van een query
+Route::get('/search', [DashboardController::class, 'search'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
